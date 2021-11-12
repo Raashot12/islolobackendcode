@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "outings",
+  "info": {
+    "name": "Outings"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "occassion": {
+      "via": "outings",
+      "model": "occassions"
+    }
+  }
+}
