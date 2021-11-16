@@ -52,6 +52,9 @@
     "blog": {
       "model": "blog-series",
       "via": "blogpost"
+    },
+    "description": {
+      "type": "string"
     }
   }
 }
