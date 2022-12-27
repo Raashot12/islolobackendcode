@@ -7,6 +7,7 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
+    "gcp-build": "strapi build",
     "strapi": "strapi"
   },
   "devDependencies": {},
@@ -38,7 +39,7 @@
     "starter": "https://github.com/strapi/strapi-starter-gatsby-blog"
   },
   "engines": {
-    "node": ">=10.16.0 <=14.x.x",
+   "node": ">=10.0",
     "npm": "^6.0.0"
   },
   "license": "MIT"

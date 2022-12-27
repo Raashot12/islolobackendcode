@@ -1,8 +1,5 @@
-const parse = require( 'pg-connection-string' ).parse
 module.exports = ( { env } ) => {
   if ( env( "NODE_ENV" ) === "production" ) {
-    const config = parse( process.env.DATABASE_URL );
-
     return {
       defaultConnection: 'default',
       connections: {
@@ -10,18 +7,13 @@ module.exports = ( { env } ) => {
           connector: 'bookshelf',
           settings: {
             client: 'postgres',
-            host: config.host,
-            port: config.port,
-            database: config.database,
-            username: config.user,
-            password: config.password,
-            ssl: {
-              rejectUnauthorized: false,
-            },
+            host: `/cloudsql/${ env( 'INSTANCE_CONNECTION_NAME' ) }`, // for a MySQL database
+            // ⚠️ For a PostgreSQL database, use socketPath: `/cloudsql/${env('INSTANCE_CONNECTION_NAME')}` instead
+            database: env( 'DATABASE_NAME' ),
+            username: env( 'DATABASE_USERNAME' ),
+            password: env( 'DATABASE_PASSWORD' ),
           },
-          options: {
-            ssl: true,
-          },
+          options: {},
         },
       },
     }
