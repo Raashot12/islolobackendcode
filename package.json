@@ -39,7 +39,7 @@
     "starter": "https://github.com/strapi/strapi-starter-gatsby-blog"
   },
   "engines": {
-    "node": ">=10.0",
+    "node": "14.x",
     "npm": "^6.0.0"
   },
   "license": "MIT"
