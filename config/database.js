@@ -1,27 +1,15 @@
-const parse = require( 'pg-connection-string' ).parse
 module.exports = ( { env } ) => {
   if ( env( "NODE_ENV" ) === "production" ) {
-    const config = parse( process.env.DATABASE_URL );
-
     return {
-      defaultConnection: 'default',
-      connections: {
-        default: {
-          connector: 'bookshelf',
-          settings: {
-            client: 'postgres',
-            host: config.host,
-            port: config.port,
-            database: config.database,
-            username: config.user,
-            password: config.password,
-            ssl: {
-              rejectUnauthorized: false,
-            },
-          },
-          options: {
-            ssl: true,
-          },
+      connection: {
+        client: 'postgres',
+        connection: {
+          host: env( 'PGHOST', '127.0.0.1' ),
+          port: env.int( 'PGPORT', 8076 ),
+          database: env( 'PGDATABASE', 'postgres' ),
+          user: env( 'PGUSER', 'strapi' ),
+          password: env( 'PGPASSWORD', 'password' ),
+          ssl: env.bool( true ),
         },
       },
     }
